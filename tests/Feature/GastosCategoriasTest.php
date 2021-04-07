@@ -13,6 +13,8 @@ class GastosCategoriasTest extends TestCase {
     /** @test */
     public function un_gasto_puede_tener_una_categoria()
     {
+        $this->withoutExceptionHandling();
+
         Categoria::create([
             'nombre' => 'Supermercado',
         ]);
@@ -22,8 +24,6 @@ class GastosCategoriasTest extends TestCase {
             'precio' => '10,99',
             'moneda' => 'ARS',
             'categoria' => 'Supermercado',
-            'tipo_gasto' => null,
-            'metodo_pago' => null,
         ];
 
         $cat = Categoria::whereNombre('Supermercado')->first();

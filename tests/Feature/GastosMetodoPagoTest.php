@@ -23,9 +23,7 @@ class GastosMetodoPagoTest extends TestCase {
             'nombre' => 'Supermercado',
             'precio' => '10,99',
             'moneda' => 'ARS',
-            'categoria' => null,
             'metodo_pago' => 'Debito',
-            'tipo_gasto' => null,
         ];
 
         $metodo_pago = MetodoPago::whereNombre('Debito')->first();

@@ -17,9 +17,9 @@ class CreateGastosTable extends Migration
             $table->id();
             $table->string('nombre');
             $table->integer('precio');
-            $table->foreignId('invitado_id');
-            $table->foreignId('categoria_id')->nullable();
-            $table->foreignId('metodo_pago_id')->nullable();
+            $table->foreignId('invitado_id')->constrained();
+            $table->foreignId('categoria_id')->nullable()->constrained();
+            $table->foreignId('metodo_pago_id')->nullable()->constrained();
             $table->timestamps();
         });
     }

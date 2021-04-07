@@ -29,6 +29,8 @@ class GastosInvitadosTest extends TestCase
     /** @test */
     public function un_nuevo_gasto_con_invitado_creado_no_crea_un_nuevo_invitado()
     {
+        $this->withoutExceptionHandling();
+
         $attrs = [
             'nombre' => 'Super chino',
             'precio' => '12,99',
