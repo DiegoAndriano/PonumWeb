@@ -129,20 +129,6 @@ class GastosInvitadosTest extends TestCase
         $this->assertEquals(auth()->user()->gastos()->whereId(3)->first()->precio, 'EUR1299');
     }
 
-    //invariable por un período de tiempo: ej: alquiler / expensas / suscripciones
-    /** @test */
-    public function un_gasto_puede_ser_fijo()
-    {
-        // tipogasto
-    }
-
-    //varía mes a mes, pero viene indefectiblemente: ej: servicio
-    /** @test */
-    public function un_gasto_puede_ser_semifijo()
-    {
-        // tipogasto
-    }
-
     /** @test */
     public function un_gasto_puede_tener_una_fecha_distinta_a_la_del_dia_de_anotado()
     {
