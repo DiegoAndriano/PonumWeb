@@ -132,7 +132,16 @@ class GastosInvitadosTest extends TestCase
     /** @test */
     public function un_gasto_puede_tener_una_fecha_distinta_a_la_del_dia_de_anotado()
     {
-        //
+        $attrs = [
+            'nombre' => 'Supermercado',
+            'precio' => '12,99',
+            'moneda' => 'EUR',
+            'fecha' => '05-04-2021', //dd-mm-aaaa
+        ];
+
+        $this->post('/', $attrs);
+        $fecha = auth()->user()->gastos()->latest()->first()->updated_at->year . '-' . auth()->user()->gastos()->latest()->first()->updated_at->month . '-' . auth()->user()->gastos()->latest()->first()->updated_at->day;
+        $this->assertEquals('2021-4-5', $fecha );
     }
 
 }

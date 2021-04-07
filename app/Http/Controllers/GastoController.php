@@ -7,6 +7,7 @@ use App\Models\Gasto;
 use App\Models\MetodoPago;
 use App\Models\TipoGasto;
 use App\Services\CrearInvitado;
+use Carbon\Carbon;
 use Cknow\Money\Money;
 use Illuminate\Http\Request;
 
@@ -18,9 +19,9 @@ class GastoController extends Controller
             'nombre' => 'required|min:3',
             'precio' => 'required',
             'moneda' => 'required|max:3',
+            'fecha' => 'nullable|date',
             'categoria' => 'nullable', //tiene que estar en la lista de categorias.
-            'tipo_gasto' => 'nullable', //tiene que estar en la lista de tipos de gastos.
-            'metodo_pago' => 'nullable', //tiene que estar en la lista de tipos de gastos.
+            'metodo_pago' => 'nullable', //tiene que estar en la lista de metodos de pago.
         ]);
 
         $precio_preparse = str_replace(',', '.', $attrs['precio']);
@@ -35,7 +36,7 @@ class GastoController extends Controller
             'precio' => $precio->getCurrency() . $precio->getAmount(),
         ]);
 
-        if ($attrs['categoria']) {
+        if (array_key_exists('categoria', $attrs)) {
             auth()
                 ->user()
                 ->gastos()
@@ -45,7 +46,7 @@ class GastoController extends Controller
                 ->associate(Categoria::whereNombre($attrs['categoria'])->first())->save();
         }
 
-        if ($attrs['tipo_gasto']) {
+        if (array_key_exists('tipo_gasto', $attrs)) {
             auth()
                 ->user()
                 ->gastos()
@@ -55,7 +56,7 @@ class GastoController extends Controller
                 ->associate(TipoGasto::whereNombre($attrs['tipo_gasto'])->first())->save();
         }
 
-        if ($attrs['metodo_pago']) {
+        if (array_key_exists('metodo_pago', $attrs)) {
             auth()
                 ->user()
                 ->gastos()
@@ -63,6 +64,17 @@ class GastoController extends Controller
                 ->first()
                 ->metodo_pago()
                 ->associate(MetodoPago::whereNombre($attrs['metodo_pago'])->first())->save();
+        }
+
+        if (array_key_exists('fecha', $attrs)) {
+
+            $fecha = Carbon::parse($attrs['fecha'])
+                ->toDateTime()
+                ->format('Y-m-d H:i:s');
+
+            auth()->user()->gastos()->latest()->first()->update([
+                'updated_at' => $fecha
+            ]);
         }
 
         return view('home');

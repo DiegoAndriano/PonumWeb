@@ -9,7 +9,7 @@ class Gasto extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['nombre', 'precio'];
+    protected $fillable = ['nombre', 'precio', 'updated_at'];
 
     public function categorias()
     {
