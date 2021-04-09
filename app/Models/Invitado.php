@@ -12,6 +12,10 @@ class Invitado extends Authenticatable
 
     protected $fillable = ['passcode'];
 
+    public function guardName(){
+        return "";
+    }
+
     public function gastos()
     {
         return $this->hasMany(Gasto::class);
