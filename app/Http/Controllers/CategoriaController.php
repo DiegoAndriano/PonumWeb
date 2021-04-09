@@ -7,5 +7,6 @@ class CategoriaController extends Controller
     public function store()
     {
         $this->authorize('store', auth()->user());
+        dd("Hola");
     }
 }

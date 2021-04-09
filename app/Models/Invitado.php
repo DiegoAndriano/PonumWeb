@@ -13,7 +13,7 @@ class Invitado extends Authenticatable
     protected $fillable = ['passcode'];
 
     public function guardName(){
-        return "";
+        return "web";
     }
 
     public function gastos()

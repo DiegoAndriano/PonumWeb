@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Invitado;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class CategoriaPolicy
@@ -20,11 +21,10 @@ class CategoriaPolicy
 
     /**
      * puede ser usuario o invitado
-     * @param $user
-     * @param $categoria
+     * @param Invitado $user
      * @return mixed
      */
-    public function store($user, $categoria)
+    public function store(Invitado $user): bool
     {
         dd("Hola");
         if ($user->can('crear categorias')) {

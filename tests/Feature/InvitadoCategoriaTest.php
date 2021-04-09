@@ -22,8 +22,7 @@ class InvitadoCategoriaTest extends TestCase
 
         $role = Role::create(['name' => 'invitado']);
         $permission = Permission::create(['name' => 'crear categorias']);
-        $role->givePermissionTo($permission);
-
+        $role->givePermissionTo($permission)->save();
         auth()->user()->assignRole($role);
 
         $attrs = [
