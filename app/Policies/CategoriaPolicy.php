@@ -10,19 +10,9 @@ class CategoriaPolicy
     use HandlesAuthorization;
 
     /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
      * puede ser usuario o invitado
      * @param Invitado $user
-     * @return mixed
+     * @return bool
      */
     public function store(Invitado $user): bool
     {
