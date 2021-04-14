@@ -11,7 +11,7 @@ class Gasto extends Model
 
     protected $fillable = ['nombre', 'precio', 'updated_at'];
 
-    public function categorias()
+    public function categoria()
     {
         return $this->belongsTo(Categoria::class, 'categoria_id');
     }
@@ -19,5 +19,15 @@ class Gasto extends Model
     public function metodo_pago()
     {
         return $this->belongsTo(MetodoPago::class, 'metodo_pago_id');
+    }
+
+    public function invitado()
+    {
+        return $this->belongsTo(Invitado::class, 'invitado_id');
+    }
+
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

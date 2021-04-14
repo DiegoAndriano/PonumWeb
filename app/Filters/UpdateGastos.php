@@ -38,7 +38,7 @@ class UpdateGastos extends IsNotNullUpdater{
         auth()->user()->gastos()
             ->latest()
             ->first()
-            ->categorias()
+            ->categoria()
             ->associate(Categoria::whereNombre($categoria)->first())->save();
 
 

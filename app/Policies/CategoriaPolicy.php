@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\Models\Invitado;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class CategoriaPolicy
 {
@@ -11,15 +12,11 @@ class CategoriaPolicy
 
     /**
      * puede ser usuario o invitado
-     * @param Invitado $user
+     * @param Authenticatable $userOInvitado
      * @return bool
      */
-    public function store(Invitado $user): bool
+    public function store(Authenticatable $userOInvitado): bool
     {
-        dd("Hola");
-        if ($user->can('crear categorias')) {
-            return true;
-        }
-        return false;
+        return $userOInvitado->can('crear categorias');
     }
 }
