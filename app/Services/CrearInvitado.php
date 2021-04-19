@@ -14,6 +14,6 @@ class CrearInvitado extends Servicio{
             'passcode' => Hash::make(Str::random(16)),
         ]);
 
-        auth()->login($invitado);
+        auth()->guard()->login($invitado);
     }
 }

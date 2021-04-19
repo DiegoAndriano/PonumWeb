@@ -4,8 +4,6 @@ namespace Tests\Feature;
 
 use App\Models\Categoria;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Spatie\Permission\Models\Permission;
-use Spatie\Permission\Models\Role;
 use Tests\TestCase;
 
 class UsuarioCategoriaTest extends TestCase
@@ -15,11 +13,9 @@ class UsuarioCategoriaTest extends TestCase
     /** @test */
     public function un_usuario_puede_crear_una_categoria_local()
     {
-        $this->signIn();
-
         $this->seed();
 
-        auth()->user()->assignRole('usuario');
+        $this->signIn();
 
         $attrs = [
             'nombre' => 'Categoría personalizada',
