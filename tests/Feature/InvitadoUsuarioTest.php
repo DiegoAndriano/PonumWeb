@@ -43,10 +43,9 @@ class InvitadoUsuarioTest extends TestCase
             'password_confirmation' => 'secretssss',
         ];
         $this->post('register', $attrs);
-
         $this->assertDatabaseMissing('users', ['name' => $attrs['name']]);
         $this->assertDatabaseHas('gastos', ['user_id' => 1]);
-        $this->assertCount(2, Gasto::whereUser_id(1)->get()->count());
+        $this->assertCount(2, Gasto::whereUser_id(1)->get());
 
     }
 }
