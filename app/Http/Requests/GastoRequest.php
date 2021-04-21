@@ -24,7 +24,9 @@ class GastoRequest extends FormRequest
             'moneda' => 'required|max:3',
             'fecha' => 'nullable|date',
             'categoria' => 'nullable|in:' . implode($categorias->toArray()),
-            'metodo_pago' => 'nullable|in:' . implode($metodos_pago->toArray()), //tiene que estar en la lista de metodos de pago.
+            'metodo_pago' => 'nullable|in:' . implode($metodos_pago->toArray()),
         ];
     }
+
+
 }

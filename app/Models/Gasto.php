@@ -9,10 +9,6 @@ class Gasto extends Model
 {
     use HasFactory;
 
-    protected $casts = [
-        'comprado_at' => 'datetime',
-    ];
-
     protected $fillable = ['nombre', 'precio', 'comprado_at'];
 
     public function categoria()

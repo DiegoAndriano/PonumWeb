@@ -13,31 +13,23 @@ class GastoController extends Controller
 {
     public function store(GastoRequest $request)
     {
-//        $categorias = Categoria::all()->pluck('nombre');
-//        $metodos_pago = MetodoPago::all()->pluck('nombre');
-//
-//        $attrs = request()->validate([
-//            'nombre' => 'required|min:3',
-//            'precio' => 'required',
-//            'moneda' => 'required|max:3',
-//            'fecha' => 'nullable|date',
-//            'categoria' => 'nullable|in:' . implode($categorias->toArray()),
-//            'metodo_pago' => 'nullable|in:' . implode($metodos_pago->toArray()), //tiene que estar en la lista de metodos de pago.
-//        ]);
+        $attrs = $request->validated();
 
-        $precio_preparse = str_replace(',', '.', $request['precio']);
-        $precio = Money::parseByIntlLocalizedDecimal($precio_preparse, $request['moneda']);
+        $precio = Money::parseByIntlLocalizedDecimal(
+            str_replace(',', '.', $attrs['precio']),
+            $attrs['moneda']
+        );
 
         if (auth()->guest()) {
             CrearInvitado::perform();
         }
 
         auth()->user()->gastos()->create([
-            'nombre' => $request['nombre'],
+            'nombre' => $attrs['nombre'],
             'precio' => $precio->getCurrency() . $precio->getAmount(),
         ]);
 
-        $updateGastos = new UpdateGastos($request);
+        $updateGastos = new UpdateGastos($attrs);
         $updateGastos->apply();
 
         return view('home');
@@ -45,16 +37,14 @@ class GastoController extends Controller
 
     public function update(GastoRequest $request)
     {
-//        $categorias = Categoria::all()->pluck('nombre');
-//        $metodos_pago = MetodoPago::all()->pluck('nombre');
-//
-//        $attrs = request()->validate([
-//            'nombre' => 'required|min:3',
-//            'precio' => 'required',
-//            'moneda' => 'required|max:3',
-//            'fecha' => 'nullable|date',
-//            'categoria' => 'nullable|in:' . implode($categorias->toArray()),
-//            'metodo_pago' => 'nullable|in:' . implode($metodos_pago->toArray()), //tiene que estar en la lista de metodos de pago.
-//        ]);
+        $attrs = $request->validated();
+        dd("HOla");
+        $precio = Money::parseByIntlLocalizedDecimal(
+            str_replace(',', '.', $attrs['precio']),
+            $attrs['moneda']
+        );
+
+//        $this->authorize('update', );
+
     }
 }

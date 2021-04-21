@@ -10,9 +10,14 @@ class GastosTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function un_gasto_no_puede_ser_modificado_por_alguien_que_no_es_el_dueño()
+    {
+
+    }
+
+    /** @test */
     public function un_gasto_puede_ser_modificado()
     {
-        $this->markTestSkipped();
         $this->withoutExceptionHandling();
 
         $this->seed();
@@ -36,7 +41,7 @@ class GastosTest extends TestCase
             'metodo_pago' => 'Debito',
         ];
 
-        $this->patch('/', $attrs);
+        $this->patch('/1', $attrs);
 
         $attrs = [
             'nombre' => 'Coca Cola',

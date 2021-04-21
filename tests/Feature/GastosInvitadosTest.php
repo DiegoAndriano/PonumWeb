@@ -146,4 +146,33 @@ class GastosInvitadosTest extends TestCase
         $this->assertEquals('2021-4-5', $fecha );
     }
 
+    /** @test */
+    public function un_gasto_puede_ser_completado_totalmente()
+    {
+        $this->withoutExceptionHandling();
+
+        $attrs = [
+            'nombre' => 'Supermercado',
+            'precio' => '12,99',
+            'moneda' => 'EUR',
+            'fecha' => '05-04-2021',
+            'categoria' => 'Supermercado',
+            'metodo_pago' => 'Debito',
+        ];
+
+        $this->post('/', $attrs);
+
+        $attrs = [
+            'nombre' => 'Supermercado',
+            'precio' => '12,99',
+            'moneda' => 'EUR',
+            'categoria' => 'Supermercado',
+            'metodo_pago' => 'Debito',
+        ];
+
+        $fecha = auth()->user()->gastos()->latest()->first()->comprado_at->year . '-' . auth()->user()->gastos()->latest()->first()->comprado_at->month . '-' . auth()->user()->gastos()->latest()->first()->comprado_at->day;
+        $this->assertEquals('2021-4-5', $fecha );
+        $this->assertDatabaseHas('gastos', $attrs);
+    }
+
 }

@@ -19,7 +19,7 @@ class MetodoPagoSeeder extends Seeder
         ]);
 
         MetodoPago::create([
-            'nombre' => 'Crédito',
+            'nombre' => 'Credito',
         ]);
 
         MetodoPago::create([

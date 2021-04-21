@@ -17,5 +17,5 @@ Auth::routes();
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/', [App\Http\Controllers\GastoController::class, 'store'])->name('gasto.store');
-Route::patch('/', [App\Http\Controllers\GastoController::class, 'update'])->name('gasto.update');
+Route::patch('/{gasto}/', [App\Http\Controllers\GastoController::class, 'update'])->name('gasto.update');
 Route::post('/categorias', [App\Http\Controllers\CategoriaController::class, 'store'])->name('categoria.store');
