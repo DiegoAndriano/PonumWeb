@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Schema;
 
 class CreateGastosTable extends Migration
@@ -21,6 +22,7 @@ class CreateGastosTable extends Migration
             $table->foreignId('user_id')->nullable()->constrained();
             $table->foreignId('categoria_id')->nullable()->constrained();
             $table->foreignId('metodo_pago_id')->nullable()->constrained();
+            $table->timestamp('comprado_at')->default(Carbon::now());
             $table->timestamps();
         });
     }

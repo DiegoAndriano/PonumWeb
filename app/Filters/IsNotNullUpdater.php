@@ -24,9 +24,6 @@ class IsNotNullUpdater{
             if (strlen($value)) {
                 $this->$name($value);
             }
-//            else {
-//                $this->$name("Input vacío");
-//            }
         }
     }
 

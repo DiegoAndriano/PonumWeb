@@ -142,7 +142,7 @@ class GastosInvitadosTest extends TestCase
         ];
 
         $this->post('/', $attrs);
-        $fecha = auth()->user()->gastos()->latest()->first()->updated_at->year . '-' . auth()->user()->gastos()->latest()->first()->updated_at->month . '-' . auth()->user()->gastos()->latest()->first()->updated_at->day;
+        $fecha = auth()->user()->gastos()->latest()->first()->comprado_at->year . '-' . auth()->user()->gastos()->latest()->first()->comprado_at->month . '-' . auth()->user()->gastos()->latest()->first()->comprado_at->day;
         $this->assertEquals('2021-4-5', $fecha );
     }
 
