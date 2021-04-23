@@ -4,6 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Invitado;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class InvitadoFactory extends Factory
 {
@@ -22,7 +24,7 @@ class InvitadoFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'passcode' => Hash::make(Str::random(16)),
         ];
     }
 }

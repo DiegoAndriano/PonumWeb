@@ -28,7 +28,7 @@ class GastosMetodoPagoTest extends TestCase {
 
         $metodo_pago = MetodoPago::whereNombre('Debito')->first();
 
-        $this->post('/', $attrs);
+        $this->post('/gasto', $attrs);
 
         $this->assertDatabaseHas('gastos', ['metodo_pago_id' => $metodo_pago->id]);
 

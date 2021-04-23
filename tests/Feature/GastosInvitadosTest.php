@@ -18,7 +18,7 @@ class GastosInvitadosTest extends TestCase
             'moneda' => 'ARS',
         ];
 
-        $this->post('/', $attrs)->assertOk();
+        $this->post('/gasto', $attrs)->assertOk();
 
         $this->assertDatabaseHas('invitados', ['id' => 1]);
 
@@ -37,12 +37,12 @@ class GastosInvitadosTest extends TestCase
             'moneda' => 'ARS',
         ];
 
-        $this->post('/', $attrs)->assertOk();
+        $this->post('/gasto', $attrs)->assertOk();
 
         $this->assertDatabaseHas('invitados', ['id' => 1]);
         $this->assertEquals(1, auth()->id());
 
-        $this->post('/', $attrs)->assertOk();
+        $this->post('/gasto', $attrs)->assertOk();
         $this->assertDatabaseMissing('invitados', ['id' => 2]);
     }
 
@@ -56,7 +56,7 @@ class GastosInvitadosTest extends TestCase
             'moneda' => 'ARS',
         ];
 
-        $this->post('/', $attrs);
+        $this->post('/gasto', $attrs);
 
         $this->assertDatabaseHas('gastos', ['nombre' => 'Supermercado']);
 
@@ -64,7 +64,7 @@ class GastosInvitadosTest extends TestCase
             'nombre' => 'as'
         ];
 
-        $response = $this->post('/', $attrs);
+        $response = $this->post('/gasto', $attrs);
         $response->assertSessionHasErrors('nombre');
         $this->assertDatabaseMissing('gastos', $attrs);
 
@@ -79,7 +79,7 @@ class GastosInvitadosTest extends TestCase
             'moneda' => 'ARS',
         ];
 
-        $this->post('/', $attrs);
+        $this->post('/gasto', $attrs);
 
         $attrs = [
             'nombre' => 'Supermercado',
@@ -93,7 +93,7 @@ class GastosInvitadosTest extends TestCase
             'precio' => ''
         ];
 
-        $response = $this->post('/', $attrs);
+        $response = $this->post('/gasto', $attrs);
         $response->assertSessionHasErrors('precio');
         $this->assertDatabaseMissing('gastos', $attrs);
     }
@@ -108,7 +108,7 @@ class GastosInvitadosTest extends TestCase
             'moneda' => 'ARS',
         ];
 
-        $this->post('/', $attrs);
+        $this->post('/gasto', $attrs);
 
         $attrs = [
             'nombre' => 'Supermercado',
@@ -116,7 +116,7 @@ class GastosInvitadosTest extends TestCase
             'moneda' => 'USD',
         ];
 
-        $this->post('/', $attrs);
+        $this->post('/gasto', $attrs);
 
         $attrs = [
             'nombre' => 'Supermercado',
@@ -124,7 +124,7 @@ class GastosInvitadosTest extends TestCase
             'moneda' => 'EUR',
         ];
 
-        $this->post('/', $attrs);
+        $this->post('/gasto', $attrs);
 
         $this->assertEquals(auth()->user()->gastos()->whereId(1)->first()->precio, 'ARS1099');
         $this->assertEquals(auth()->user()->gastos()->whereId(2)->first()->precio, 'USD1599');
@@ -141,15 +141,15 @@ class GastosInvitadosTest extends TestCase
             'fecha' => '05-04-2021', //dd-mm-aaaa
         ];
 
-        $this->post('/', $attrs);
-        $fecha = auth()->user()->gastos()->latest()->first()->comprado_at->year . '-' . auth()->user()->gastos()->latest()->first()->comprado_at->month . '-' . auth()->user()->gastos()->latest()->first()->comprado_at->day;
+        $this->post('/gasto', $attrs);
+        $fecha = auth()->user()->gastos()->first()->comprado_at->year . '-' . auth()->user()->gastos()->first()->comprado_at->month . '-' . auth()->user()->gastos()->first()->comprado_at->day;
         $this->assertEquals('2021-4-5', $fecha );
     }
 
     /** @test */
     public function un_gasto_puede_ser_completado_totalmente()
     {
-        $this->withoutExceptionHandling();
+        $this->seed();
 
         $attrs = [
             'nombre' => 'Supermercado',
@@ -160,18 +160,18 @@ class GastosInvitadosTest extends TestCase
             'metodo_pago' => 'Debito',
         ];
 
-        $this->post('/', $attrs);
+        $this->post('/gasto', $attrs);
 
         $attrs = [
             'nombre' => 'Supermercado',
-            'precio' => '12,99',
-            'moneda' => 'EUR',
-            'categoria' => 'Supermercado',
-            'metodo_pago' => 'Debito',
+            'precio' => 'EUR1299',
+            'categoria_id' => '1',
+            'metodo_pago_id' => '1',
         ];
 
         $fecha = auth()->user()->gastos()->latest()->first()->comprado_at->year . '-' . auth()->user()->gastos()->latest()->first()->comprado_at->month . '-' . auth()->user()->gastos()->latest()->first()->comprado_at->day;
         $this->assertEquals('2021-4-5', $fecha );
+
         $this->assertDatabaseHas('gastos', $attrs);
     }
 

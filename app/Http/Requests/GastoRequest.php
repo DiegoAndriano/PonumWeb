@@ -17,14 +17,14 @@ class GastoRequest extends FormRequest
     {
         $categorias = Categoria::all()->pluck('nombre');
         $metodos_pago = MetodoPago::all()->pluck('nombre');
-
+//        dd(request()->categoria);
         return [
             'nombre' => 'required|min:3',
             'precio' => 'required',
             'moneda' => 'required|max:3',
             'fecha' => 'nullable|date',
-            'categoria' => 'nullable|in:' . implode($categorias->toArray()),
-            'metodo_pago' => 'nullable|in:' . implode($metodos_pago->toArray()),
+            'categoria' => 'nullable|in:' . implode(',', $categorias->toArray()),
+            'metodo_pago' => 'nullable|in:' . implode(',', $metodos_pago->toArray()),
         ];
     }
 

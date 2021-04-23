@@ -2,6 +2,7 @@
 
 namespace App\Policies;
 
+use App\Models\Gasto;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -13,10 +14,11 @@ class GastoPolicy
     /**
      * puede ser usuario o invitado
      * @param Authenticatable $userOInvitado
+     * @param Gasto $gasto
      * @return bool
      */
-    public function update(Authenticatable $userOInvitado, $gasto): bool
+    public function update(Authenticatable $userOInvitado, Gasto $gasto): bool
     {
-        return $userOInvitado->can('crear categorias');
+        return $userOInvitado->is($gasto->usuario()->first()) || $userOInvitado->is($gasto->invitado()->first());
     }
 }

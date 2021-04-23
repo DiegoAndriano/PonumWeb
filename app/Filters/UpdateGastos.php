@@ -13,35 +13,29 @@ use Carbon\Carbon;
  */
 class UpdateGastos extends IsNotNullUpdater{
 
-    public function fecha($fecha)
+    public function fecha($fecha, $gasto)
     {
         $fecha_parsed = Carbon::parse($fecha)
             ->toDateTime()
             ->format('Y-m-d H:i:s');
 
-        auth()->user()->gastos()->update([
+        $gasto->update([
             'comprado_at' => $fecha_parsed
         ]);
     }
 
-    public function metodo_pago($metodo_pago)
+    public function metodo_pago($metodo_pago, $gasto)
     {
-        auth()->user()->gastos()
-            ->latest()
-            ->first()
+        $gasto
             ->metodo_pago()
             ->associate(MetodoPago::whereNombre($metodo_pago)->first())->save();
     }
 
-    public function categoria($categoria)
+    public function categoria($categoria, $gasto)
     {
-        auth()->user()->gastos()
-            ->latest()
-            ->first()
+        $gasto
             ->categoria()
             ->associate(Categoria::whereNombre($categoria)->first())->save();
-
-
     }
 
 }

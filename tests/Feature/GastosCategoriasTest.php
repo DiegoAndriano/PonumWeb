@@ -28,7 +28,7 @@ class GastosCategoriasTest extends TestCase {
 
         $cat = Categoria::whereNombre('Supermercado')->first();
 
-        $this->post('/', $attrs);
+        $this->post('/gasto', $attrs);
 
         $this->assertDatabaseHas('gastos', ['categoria_id' => $cat->id]);
     }

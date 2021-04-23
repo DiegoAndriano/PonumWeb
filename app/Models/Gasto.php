@@ -11,6 +11,10 @@ class Gasto extends Model
 
     protected $fillable = ['nombre', 'precio', 'comprado_at'];
 
+    protected $casts = [
+        'comprado_at' => 'datetime',
+    ];
+
     public function categoria()
     {
         return $this->belongsTo(Categoria::class, 'categoria_id');

@@ -5,10 +5,12 @@ namespace App\Filters;
 class IsNotNullUpdater{
 
     private $attrs;
+    private $gasto;
 
-    public function __construct($attrs)
+    public function __construct($attrs, $gasto)
     {
         $this->attrs = $attrs;
+        $this->gasto = $gasto;
     }
 
     /**
@@ -22,7 +24,7 @@ class IsNotNullUpdater{
             }
 
             if (strlen($value)) {
-                $this->$name($value);
+                $this->$name($value, $this->gasto);
             }
         }
     }
