@@ -10,10 +10,17 @@ module.exports = {
     ],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {},
+    extend: {
+        transitionProperty: {
+            DEFAULT: 'padding, box-shadow,background-color, border-color, color, fill, stroke, opacity, transform',
+            'spacing': 'padding',
+        },
+    },
   },
-  variants: {
-    extend: {},
-  },
+    variants:  {
+        placeholderColor: ['hover', 'focus', 'responsive'],
+        padding: ['hover', 'focus', 'responsive'],
+        cursor: ['hover', 'focus', 'responsive'],
+    },
   plugins: [],
 }

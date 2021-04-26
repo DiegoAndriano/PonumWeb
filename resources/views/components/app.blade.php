@@ -20,12 +20,21 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<div id="app">
-    <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
-            </a>
+<div id="app" class="max-w-screen-lg mx-auto">
+
+    <nav class="flex justify-between py-10 px-14">
+        <p>Ponum</p>
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="transition translate hover:rotate-45 w-5 h-2 text-black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <g class="stroke-current">
+                    <line x1="4" y1="8" x2="20" y2="8" />
+                </g>
+            </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-2 text-black" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <g class="stroke-current">
+                    <line x1="4" y1="8" x2="20" y2="8" />
+                </g>
+            </svg>
         </div>
     </nav>
 

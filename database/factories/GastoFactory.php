@@ -40,7 +40,7 @@ class GastoFactory extends Factory
         ];
     }
 
-    public function con_usuario($user = null)
+    public function conUsuario($user = null)
     {
         return $this->state(function (array $attributes) use ($user){
             return [
