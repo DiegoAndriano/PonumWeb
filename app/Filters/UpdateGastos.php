@@ -20,7 +20,7 @@ class UpdateGastos extends IsNotNullUpdater{
             ->format('Y-m-d H:i:s');
 
         $gasto->update([
-            'comprado_at' => $fecha_parsed
+            'comprado_at' => $fecha_parsed,
         ]);
     }
 

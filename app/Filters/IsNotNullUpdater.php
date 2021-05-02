@@ -19,7 +19,7 @@ class IsNotNullUpdater{
     public function apply()
     {
         foreach (collect($this->attrs) as $name => $value) {
-            if (!method_exists($this, $name)) {
+            if (! method_exists($this, $name)) {
                 continue;
             }
 

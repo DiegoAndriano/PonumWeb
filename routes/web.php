@@ -18,8 +18,8 @@ Auth::routes();
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::prefix('gasto')->group(function(){
     Route::post('/', [App\Http\Controllers\GastoController::class, 'store'])->name('gasto.store');
-    Route::patch('/{gasto}/', [App\Http\Controllers\GastoController::class, 'update'])->name('gasto.update');
-    Route::delete('/{gasto}/', [App\Http\Controllers\GastoController::class, 'delete'])->name('gasto.delete');
+    Route::patch('{gasto}/', [App\Http\Controllers\GastoController::class, 'update'])->name('gasto.update');
+    Route::delete('{gasto}/', [App\Http\Controllers\GastoController::class, 'delete'])->name('gasto.delete');
 });
 
-Route::post('/categorias', [App\Http\Controllers\CategoriaController::class, 'store'])->name('categoria.store');
+Route::post('categorias', [App\Http\Controllers\CategoriaController::class, 'store'])->name('categoria.store');

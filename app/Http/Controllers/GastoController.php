@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Filters\UpdateGastos;
 use App\Http\Requests\GastoRequest;
-use App\Models\Categoria;
 use App\Models\Gasto;
-use App\Models\MetodoPago;
 use App\Services\CrearInvitado;
 use Cknow\Money\Money;
 

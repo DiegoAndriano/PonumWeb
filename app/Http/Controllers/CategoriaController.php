@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Categoria;
-use Illuminate\Support\Str;
 
 class CategoriaController extends Controller
 {

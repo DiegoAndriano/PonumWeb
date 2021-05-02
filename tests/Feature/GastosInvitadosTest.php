@@ -61,7 +61,7 @@ class GastosInvitadosTest extends TestCase
         $this->assertDatabaseHas('gastos', ['nombre' => 'Supermercado']);
 
         $attrs = [
-            'nombre' => 'as'
+            'nombre' => 'as',
         ];
 
         $response = $this->post('/gasto', $attrs);
@@ -83,14 +83,14 @@ class GastosInvitadosTest extends TestCase
 
         $attrs = [
             'nombre' => 'Supermercado',
-            'precio' => 'ARS1299' //parseo de float a Money
+            'precio' => 'ARS1299', //parseo de float a Money
         ];
 
         $this->assertDatabaseHas('gastos', $attrs);
 
         $attrs = [
             'nombre' => 'Supermercado',
-            'precio' => ''
+            'precio' => '',
         ];
 
         $response = $this->post('/gasto', $attrs);

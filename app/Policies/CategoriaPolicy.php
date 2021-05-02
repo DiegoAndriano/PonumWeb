@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\Invitado;
 use Illuminate\Auth\Access\HandlesAuthorization;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
