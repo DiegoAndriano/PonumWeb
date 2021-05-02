@@ -1,3 +1,25 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.autocomplete-enter-active,
+.autocomplete-leave-active {
+    transition: all 0.4s;
+}
+
+.autocomplete-enter,
+.autocomplete-leave-active {
+    opacity: 0;
+    transform: translateY(-7px);
+}
+
+.gastos-avanzado-enter-active,
+.gastos-avanzado-leave-active {
+    transition: all 0.4s;
+}
+
+.gastos-avanzado-enter,
+.gastos-avanzado-leave-active {
+    opacity: 0;
+    transform: translateY(-7px);
+}

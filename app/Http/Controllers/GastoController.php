@@ -7,6 +7,7 @@ use App\Http\Requests\GastoRequest;
 use App\Models\Gasto;
 use App\Services\CrearInvitado;
 use Cknow\Money\Money;
+use Illuminate\Support\Str;
 
 class GastoController extends Controller
 {
@@ -15,7 +16,7 @@ class GastoController extends Controller
         $attrs = $request->validated();
 
         $precio = Money::parseByIntlLocalizedDecimal(
-            str_replace(',', '.', $attrs['precio']),
+            str_replace(',', '.', Str::of($attrs['precio'])->replace('$', '')),
             $attrs['moneda']
         );
 
@@ -31,7 +32,7 @@ class GastoController extends Controller
         $updateGastos = new UpdateGastos($attrs, $gasto);
         $updateGastos->apply();
 
-        return view('home');
+        return redirect('home');
     }
 
     public function update(GastoRequest $request, Gasto $gasto)

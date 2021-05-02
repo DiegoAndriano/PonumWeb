@@ -12,6 +12,9 @@ class GastosInvitadosTest extends TestCase
     /** @test */
     public function un_nuevo_gasto_crea_un_nuevo_invitado_y_se_loguea_como_el()
     {
+        $this->withoutExceptionHandling();
+        $this->seed();
+
         $attrs = [
             'nombre' => 'Super chino',
             'precio' => '12,99',
@@ -96,6 +99,39 @@ class GastosInvitadosTest extends TestCase
         $response = $this->post('/gasto', $attrs);
         $response->assertSessionHasErrors('precio');
         $this->assertDatabaseMissing('gastos', $attrs);
+    }
+    /** @test */
+    public function un_gasto_puede_tener_signo_pesos_mal_ubicado()
+    {
+        $attrs = [
+            'nombre' => 'Supermercado',
+            'precio' => '$12,99',
+            'moneda' => 'ARS',
+        ];
+
+        $this->post('/gasto', $attrs);
+
+        $attrs = [
+            'nombre' => 'Supermercado',
+            'precio' => 'ARS1299', //parseo de float a Money
+        ];
+
+        $this->assertDatabaseHas('gastos', $attrs);
+
+        $attrs = [
+            'nombre' => 'Compras varias',
+            'precio' => '10,99$',
+            'moneda' => 'ARS',
+        ];
+
+        $this->post('/gasto', $attrs);
+
+        $attrs = [
+            'nombre' => 'Compras varias',
+            'precio' => 'ARS1099', //parseo de float a Money
+        ];
+
+        $this->assertDatabaseHas('gastos', $attrs);
     }
 
     /** @test */

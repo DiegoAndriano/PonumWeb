@@ -14,6 +14,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home', ['categorias' => Categoria::all()->pluck('nombre')]);
+        return view('home', [
+            'categorias' => Categoria::all()->pluck('nombre'),
+            'gastos' => auth()->check() ? auth()->user()->gastos()->get() : null
+        ]);
     }
 }

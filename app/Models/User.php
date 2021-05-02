@@ -49,4 +49,10 @@ class User extends Authenticatable
         });
     }
 
+    public function gastos()
+    {
+        return $this->hasMany(Gasto::class);
+    }
+
+
 }

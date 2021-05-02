@@ -3,8 +3,9 @@
         id="main"
         class="w-1/4">
         <input type="text" placeholder="Categoría" v-model="categoria" v-on:keyup="autoComplete"
+               :class="fronterrors.categoria ? 'border-red-500' : ''"
                class="transition ease-in-out duration-250 pr-4 pl-4 border border-gray-200 bg-gray-100 focus:bg-white focus:px-6 mr-4 py-2">
-        <transition name="pop-out-quick">
+        <transition name="autocomplete">
             <div class="absolute cursor-pointer bg-white rounded-xl shadow-xl mt-4"
                  v-if="results.length">
                 <ul class="items-center">
@@ -29,6 +30,7 @@ export default {
         return {
             categoria: '',
             results: [],
+            fronterrors: {},
         }
     },
     mounted() {
@@ -49,6 +51,7 @@ export default {
         },
         updateCategoria(categoria) {
             this.categoria = categoria
+            this.results = []
         },
         closeIfClickedOutside(event) {
             if (event.keyCode === 27) {
@@ -59,21 +62,7 @@ export default {
                 this.results = []
                 document.removeEventListener('click', this.closeIfClickedOutside);
             }
-        }
+        },
     }
 }
 </script>
-
-
-<style>
-.pop-out-quick-enter-active,
-.pop-out-quick-leave-active {
-    transition: all 0.4s;
-}
-
-.pop-out-quick-enter,
-.pop-out-quick-leave-active {
-    opacity: 0;
-    transform: translateY(-7px);
-}
-</style>
