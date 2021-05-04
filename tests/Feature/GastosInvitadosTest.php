@@ -12,7 +12,6 @@ class GastosInvitadosTest extends TestCase
     /** @test */
     public function un_nuevo_gasto_crea_un_nuevo_invitado_y_se_loguea_como_el()
     {
-        $this->withoutExceptionHandling();
         $this->seed();
 
         $attrs = [
@@ -21,7 +20,7 @@ class GastosInvitadosTest extends TestCase
             'moneda' => 'ARS',
         ];
 
-        $this->post('/gasto', $attrs)->assertOk();
+        $this->post('/gasto', $attrs);
 
         $this->assertDatabaseHas('invitados', ['id' => 1]);
 
@@ -32,7 +31,6 @@ class GastosInvitadosTest extends TestCase
     /** @test */
     public function un_nuevo_gasto_con_invitado_creado_no_crea_un_nuevo_invitado()
     {
-        $this->withoutExceptionHandling();
 
         $attrs = [
             'nombre' => 'Super chino',
@@ -40,12 +38,12 @@ class GastosInvitadosTest extends TestCase
             'moneda' => 'ARS',
         ];
 
-        $this->post('/gasto', $attrs)->assertOk();
+        $this->post('/gasto', $attrs);
 
         $this->assertDatabaseHas('invitados', ['id' => 1]);
         $this->assertEquals(1, auth()->id());
 
-        $this->post('/gasto', $attrs)->assertOk();
+        $this->post('/gasto', $attrs);
         $this->assertDatabaseMissing('invitados', ['id' => 2]);
     }
 
@@ -137,7 +135,6 @@ class GastosInvitadosTest extends TestCase
     /** @test */
     public function un_gasto_puede_tener_un_tipo_de_moneda()
     {
-        $this->withoutExceptionHandling();
         $attrs = [
             'nombre' => 'Supermercado',
             'precio' => '10,99',
@@ -201,7 +198,7 @@ class GastosInvitadosTest extends TestCase
         $attrs = [
             'nombre' => 'Supermercado',
             'precio' => 'EUR1299',
-            'categoria_id' => '1',
+            'categoria_id' => '26',
             'metodo_pago_id' => '1',
         ];
 

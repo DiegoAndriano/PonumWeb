@@ -1,10 +1,10 @@
 <template>
     <div
         id="main"
-        class="w-1/4">
+        class="w-full">
         <input type="text" placeholder="Categoría" v-model="categoria" v-on:keyup="autoComplete"
                :class="fronterrors.categoria ? 'border-red-500' : ''"
-               class="transition ease-in-out duration-250 pr-4 pl-4 border border-gray-200 bg-gray-100 focus:bg-white focus:px-6 mr-4 py-2">
+               class="w-full transition ease-in-out duration-250 pr-4 pl-4 border border-gray-200 bg-gray-100 focus:bg-white focus:px-6 mr-4 py-2">
         <transition name="autocomplete">
             <div class="absolute cursor-pointer bg-white rounded-xl shadow-xl mt-4"
                  v-if="results.length">

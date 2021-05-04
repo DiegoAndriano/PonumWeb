@@ -18,7 +18,7 @@
             </div>
             <div class="w-1/4 mr-4">
                 <input style="outline:none;"
-                       class="transition ease-in-out duration-250 pr-4 pl-4 border border-gray-200 bg-gray-100 focus:bg-white focus:px-6 py-2"
+                       class="w-full transition ease-in-out duration-250 pr-4 pl-4 border border-gray-200 bg-gray-100 focus:bg-white focus:px-6 py-2"
                        type="text" placeholder="Precio"
                        :class="fronterrors.precio ? 'border-red-500' : ''"
                        v-model="form.precio">
@@ -28,7 +28,7 @@
                     v-if="fronterrors.precio"></p>
             </div>
 
-            <div>
+            <div class="w-1/4 mr-4">
                 <autocomplete ref="autocomplete" :categorias="categorias"></autocomplete>
                 <p
                     class="text-red-500 text-xs font-semibold"

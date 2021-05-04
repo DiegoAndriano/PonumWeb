@@ -23,8 +23,8 @@ class InvitadoUsuarioTest extends TestCase
             'moneda' => 'ARS',
         ];
 
-        $this->post('/gasto', $attrs)->assertOk();
-        $this->post('/gasto', $attrs)->assertOk();
+        $this->post('/gasto', $attrs);
+        $this->post('/gasto', $attrs);
 
         $gasto = Gasto::first();
 

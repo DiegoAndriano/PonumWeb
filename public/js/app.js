@@ -37858,7 +37858,7 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "w-1/4", attrs: { id: "main" } },
+    { staticClass: "w-full", attrs: { id: "main" } },
     [
       _c("input", {
         directives: [
@@ -37870,7 +37870,7 @@ var render = function() {
           }
         ],
         staticClass:
-          "transition ease-in-out duration-250 pr-4 pl-4 border border-gray-200 bg-gray-100 focus:bg-white focus:px-6 mr-4 py-2",
+          "w-full transition ease-in-out duration-250 pr-4 pl-4 border border-gray-200 bg-gray-100 focus:bg-white focus:px-6 mr-4 py-2",
         class: _vm.fronterrors.categoria ? "border-red-500" : "",
         attrs: { type: "text", placeholder: "Categoría" },
         domProps: { value: _vm.categoria },
@@ -38057,7 +38057,7 @@ var render = function() {
               }
             ],
             staticClass:
-              "transition ease-in-out duration-250 pr-4 pl-4 border border-gray-200 bg-gray-100 focus:bg-white focus:px-6 py-2",
+              "w-full transition ease-in-out duration-250 pr-4 pl-4 border border-gray-200 bg-gray-100 focus:bg-white focus:px-6 py-2",
             class: _vm.fronterrors.precio ? "border-red-500" : "",
             staticStyle: { outline: "none" },
             attrs: { type: "text", placeholder: "Precio" },
@@ -38082,6 +38082,7 @@ var render = function() {
         _vm._v(" "),
         _c(
           "div",
+          { staticClass: "w-1/4 mr-4" },
           [
             _c("autocomplete", {
               ref: "autocomplete",

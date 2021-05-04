@@ -12,6 +12,7 @@ class CreateInvitadosTable extends Migration
             $table->id();
             $table->string('passcode');
             $table->timestamps();
+            $table->rememberToken();
         });
     }
 

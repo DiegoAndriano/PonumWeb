@@ -16,7 +16,7 @@ class HomeController extends Controller
     {
         return view('home', [
             'categorias' => Categoria::all()->pluck('nombre'),
-            'gastos' => auth()->check() ? auth()->user()->gastos()->get() : null
+            'gastos' => auth()->check() ? auth()->user()->gastos()->get() : null,
         ]);
     }
 }

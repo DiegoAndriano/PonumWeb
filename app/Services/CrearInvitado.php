@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\Invitado;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -14,6 +15,6 @@ class CrearInvitado extends Servicio{
             'passcode' => Hash::make(Str::random(16)),
         ]);
 
-        auth()->guard()->login($invitado);
+        Auth::guard()->login($invitado, true);
     }
 }

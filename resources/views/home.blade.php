@@ -12,8 +12,8 @@
         <nuevo-gasto categorias="{{ json_encode($categorias) }}"></nuevo-gasto>
 
         <ul>
-            @if($gastos)
-                @foreach($gastos as $gasto)
+            @if ($gastos)
+                @foreach ($gastos as $gasto)
                     <li>
                         {{ $gasto->nombre }}
                     </li>

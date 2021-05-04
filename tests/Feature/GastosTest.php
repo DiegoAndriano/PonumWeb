@@ -32,8 +32,6 @@ class GastosTest extends TestCase
     /** @test */
     public function un_gasto_puede_ser_modificado()
     {
-        $this->withoutExceptionHandling();
-
         $this->seed();
 
         $this->signInAsInvitado();
@@ -60,7 +58,7 @@ class GastosTest extends TestCase
         $attrs = [
             'nombre' => 'CocaCola',
             'precio' => 'ARS18500',
-            'categoria_id' => '1',
+            'categoria_id' => '26',
             'metodo_pago_id' => '1',
         ];
 
